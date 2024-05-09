@@ -26,7 +26,7 @@ interface TabItem {
 const defaultTabs: TabItem[] = [
   {
     key: '/',
-    label: '首页',
+    label: '기본탭',
     pathname: '/',
     search: '',
     closable: false,

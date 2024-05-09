@@ -280,8 +280,8 @@ export enum OssConfigActionType {
   Edit,
 }
 export const OssConfigActionTypeTextMap = {
-  [OssConfigActionType.Add]: '新增',
-  [OssConfigActionType.Edit]: '编辑',
+  [OssConfigActionType.Add]: 'ADD',
+  [OssConfigActionType.Edit]: 'Edit',
 };
 export interface AtomAddOrEditModal {
   open: boolean;

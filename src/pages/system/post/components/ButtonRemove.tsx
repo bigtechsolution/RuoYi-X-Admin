@@ -11,7 +11,7 @@ const ButtonRemove: FC<{
   isBatch?: boolean;
   disabled?: boolean;
 }> = ({ postId, isBatch, disabled }) => {
-  const text = isBatch ? '批量删除' : '删除';
+  const text = isBatch ? '일괄삭제' : '삭제';
 
   const mainTableActions = useAtomValueMainTableActions();
 
@@ -25,7 +25,7 @@ const ButtonRemove: FC<{
       onSuccess: () => {
         mainTableActions?.reload();
         mainTableActions?.clearSelected?.();
-        message.success('删除成功');
+        message.success('성공적으로 삭제되었습니다');
       },
     },
   );

@@ -10,8 +10,8 @@ interface BaseTableAlertProps {
 export const BaseTableAlert: FC<BaseTableAlertProps> = ({ selectedNum = 0, children, onCleanSelected }) => {
   return (
     <Space>
-      <span>已选 {selectedNum} 项</span>
-      <a onClick={onCleanSelected}>取消选择</a>
+      <span>선택된 {selectedNum} 건</span>
+      <a onClick={onCleanSelected}>선택 취소</a>
       {children}
     </Space>
   );

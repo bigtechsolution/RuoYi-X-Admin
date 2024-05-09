@@ -16,14 +16,13 @@ const useColumns = (): ProColumns<SysPostVo>[] => {
   const { valueEnumSysNormalDisable } = useQueryDictSysNormalDisable();
 
   return [
-    { dataIndex: 'postId', key: 'postId', title: '岗位编号', valueType: 'text', hideInSearch: true },
-    { dataIndex: 'postCode', key: 'postCode', title: '岗位编码', valueType: 'text' },
-    { dataIndex: 'postName', key: 'postName', title: '岗位名称', valueType: 'text' },
-    { dataIndex: 'postSort', key: 'postSort', title: '显示顺序', valueType: 'text', hideInSearch: true },
-    { title: '状态', dataIndex: 'status', key: 'status', valueType: 'select', valueEnum: valueEnumSysNormalDisable },
-    { title: '备注', dataIndex: 'remark', key: 'remark', valueType: 'textarea', hideInSearch: true },
+    { dataIndex: 'postId', key: 'postId', title: '아이디', valueType: 'text', hideInSearch: true },
+    { dataIndex: 'postCode', key: 'postCode', title: '코드', valueType: 'text' },
+    { dataIndex: 'postName', key: 'postName', title: '이름', valueType: 'text' },
+    { title: '딕셔너리', dataIndex: 'status', key: 'status', valueType: 'select', valueEnum: valueEnumSysNormalDisable },
+    { title: '리마크', dataIndex: 'remark', key: 'remark', valueType: 'textarea', hideInSearch: true },
     {
-      title: '创建时间',
+      title: '오름차순정렬',
       dataIndex: 'createTime',
       key: 'createTime',
       valueType: 'dateTime',
@@ -32,7 +31,7 @@ const useColumns = (): ProColumns<SysPostVo>[] => {
       sorter: true,
     },
     {
-      title: '操作',
+      title: 'OPTION',
       valueType: 'option',
       render: (_dom, entity: SysPostVo) => {
         return (

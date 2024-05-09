@@ -95,7 +95,8 @@ const Layouts: FC = () => {
               />
             </header>
             {!isLoading && (
-              <Access accessible={!!currRouteSettingsKey} fallback={<PermissionDenied />}>
+              //무조건 엑세스하게 바꿈
+              <Access accessible={!!true} fallback={<PermissionDenied />}>
                 {Object.entries(keepAliveElements.current).map(([key, element]) => (
                   <div key={`${key}_${cacheKeyMap?.[key] ?? '_'}`} hidden={!matchPath(key, pathname)} className="mt-10">
                     {element}

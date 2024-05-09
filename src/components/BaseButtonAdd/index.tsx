@@ -7,7 +7,7 @@ import { cloneElement } from 'react';
 export const BaseButtonAdd: FC<ButtonProps> = (props) => {
   return cloneElement(
     <Button type="primary" icon={<PlusOutlined />}>
-      新增
+      새로운
     </Button>,
     props,
   );

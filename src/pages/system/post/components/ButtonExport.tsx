@@ -29,7 +29,7 @@ const ButtonExport: FC<{ searchParams: SysPostQueryBo }> = ({ searchParams }) =>
   return (
     <Access accessible>
       <Button type="primary" ghost icon={<DownloadOutlined />} loading={isLoading} onClick={() => mutate(searchParams)}>
-        导出当前列表
+        현재 목록 내보내기
       </Button>
     </Access>
   );
