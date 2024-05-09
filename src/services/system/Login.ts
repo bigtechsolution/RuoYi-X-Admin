@@ -22,8 +22,8 @@ import type { RLoginVo, UserNameLoginBo } from './data-contracts';
  * @secure
  */
 export const sysLoginPostLogin = (data: UserNameLoginBo, params: RequestParams = {}) =>
-  request<RLoginVo>({
-    path: `/login`,
+  request<any>({
+    path: `/auth/login`,
     method: 'POST',
     body: data,
     secure: true,

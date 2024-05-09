@@ -106,7 +106,7 @@ instance.interceptors.response.use(
     // 过滤掉取消请求的错误
     if (error?.code === 'ERR_CANCELED') return;
 
-    message.error('网络错误，请稍后再试');
+    message.error('에러발생');
   },
 );
 
@@ -117,6 +117,8 @@ export function request<D extends ResponseStructure>(
   params: { skipErrorHandler: true } & Omit<FullRequestParams, 'skipErrorHandler'>,
 ): Promise<AxiosResponse<D>>;
 export function request({ secure, path, type, query, format, body, skipErrorHandler, ...params }: FullRequestParams) {
+  console.log(secure)
+  console.log(checkToken())
   if (secure && !checkToken()) {
     redirectToLoginPage();
     return;
@@ -127,10 +129,11 @@ export function request({ secure, path, type, query, format, body, skipErrorHand
   if (type === ContentType.FormData && body && typeof body === 'object') {
     data = createFormData(body as Record<string, unknown>);
   }
-
+  console.log("aadud")
   if (type === ContentType.Text && body && typeof body !== 'string') {
     data = JSON.stringify(body);
   }
+  console.log("bbb")
 
   return instance({
     ...params,
@@ -146,21 +149,22 @@ export function request({ secure, path, type, query, format, body, skipErrorHand
     if (skipErrorHandler) {
       return axiosResponse;
     }
+    console.log(axiosResponse.data)
+    return axiosResponse.data?.data ?? axiosResponse.data;
+    // const code = axiosResponse.data?.code;
 
-    const code = axiosResponse.data?.code;
-
-    if (code === 200) {
-      return axiosResponse.data?.data ?? axiosResponse.data;
-    }
-
-    if (code === 401) {
-      requestCanceler.clearPendingRequest();
-      clearToken();
-      redirectToLoginPage('登录已过期，请重新登录');
-      return;
-    }
-
-    message.error(axiosResponse.data?.msg ?? '网络错误，请稍后再试');
+    // if (code === 200) {
+    //   return axiosResponse.data?.data ?? axiosResponse.data;
+    // }
+    //
+    // if (code === 401) {
+    //   requestCanceler.clearPendingRequest();
+    //   clearToken();
+    //   redirectToLoginPage('로그인이 만료되었습니다. 다시 로그인해 주세요.');
+    //   return;
+    // }
+    //
+    // message.error(axiosResponse.data?.msg ?? '네트워크 오류입니다. 나중에 다시 시도해 주세요.');
 
     throw axiosResponse.data;
   });

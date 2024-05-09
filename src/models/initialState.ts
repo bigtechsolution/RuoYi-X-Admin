@@ -16,17 +16,17 @@ export const useAtomValueKeepAliveRoutes = () => useAtomValue(atomKeepAliveRoute
 
 export const useQueryInitialState = () => {
   const setAtomPermissions = useSetAtomPermissions();
-  const setAtomKeepAliveRoutes = useSetAtomKeepAliveRoutes();
+  // const setAtomKeepAliveRoutes = useSetAtomKeepAliveRoutes();
 
   return useQuery(
     initialStateQueryKey,
     async () => {
-      const [userInfo, userRoutes] = await Promise.all([sysLoginGetInfo(), sysLoginGetRouters()]);
+      const [userInfo] = await Promise.all([sysLoginGetInfo()]);
 
       setAtomPermissions(new Set(userInfo.permissions));
 
-      const routeSettingMap = getRouteSettingMap(userRoutes);
-      setAtomKeepAliveRoutes(Object.keys(routeSettingMap).filter((i) => routeSettingMap[i].isKeepAlive));
+      // const routeSettingMap = getRouteSettingMap(userRoutes);
+      // setAtomKeepAliveRoutes(Object.keys(routeSettingMap).filter((i) => routeSettingMap[i].isKeepAlive));
 
       return { userInfo, routeSettingMap, menus: convertUserRoutesToMenus(userRoutes) };
     },

@@ -7,7 +7,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { App, ConfigProvider } from 'antd';
 import 'antd/dist/reset.css';
-import zhCN from 'antd/es/locale/zh_CN';
+import koKr from 'antd/es/locale/ko_KR';
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 import { Provider } from 'jotai';
@@ -45,7 +45,7 @@ const bootstrap = () => {
     <StrictMode>
       <Provider>
         <QueryClientProvider client={queryClient}>
-          <ConfigProvider locale={zhCN}>
+          <ConfigProvider locale={koKr}>
             <App>
               <ProComponentsProvider>
                 <RouterProvider router={router} />

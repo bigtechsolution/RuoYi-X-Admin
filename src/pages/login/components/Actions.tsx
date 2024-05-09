@@ -7,12 +7,12 @@ const Actions: FC = () => {
   return (
     <div className="flex flex-col justify-center items-center">
       <Divider plain>
-        <span className="text-sm font-normal text-neutral-400">其他登录方式</span>
+        <span className="text-sm font-normal text-neutral-400"></span>
       </Divider>
 
       <div
         onClick={() => {
-          message.info('敬请期待');
+          message.info('sss');
         }}
         className="flex justify-center items-center cursor-pointer rounded-full h-[40px] w-[40px] border-solid border border-gray-300"
       >

@@ -23,7 +23,7 @@ import type { RUserInfoVo } from './data-contracts';
  */
 export const sysLoginGetInfo = (params: RequestParams = {}) =>
   request<RUserInfoVo>({
-    path: `/info`,
+    path: `/auth/me`,
     method: 'GET',
     secure: true,
     skipErrorHandler: false,

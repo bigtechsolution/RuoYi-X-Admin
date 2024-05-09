@@ -12,7 +12,8 @@ export const clearToken = () => {
 
 export const setToken = (storageType: StorageType, token: string) => {
   clearToken();
-
+  console.log("로그인성공시토큰에넣자")
+  console.log(token)
   if (storageType === StorageType.LOCAL_STORAGE) {
     localStorage.setItem(TOKEN_KEY, token);
   } else {

@@ -2,13 +2,11 @@ import { useRefreshInitialState } from '@/models';
 import Actions from '@/pages/login/components/Actions';
 import FormLoginByPhone from '@/pages/login/components/FormLoginByPhone';
 import FormLoginByPwd from '@/pages/login/components/FormLoginByPwd';
-import { captchaGetGetCode } from '@/services/system/CaptchaImage';
 import type { SmsLoginBo, UserNameLoginBo } from '@/services/system/data-contracts';
 import { sysLoginPostLogin } from '@/services/system/Login';
 import { sysLoginPostSmsLogin } from '@/services/system/SmsLogin';
 import { setToken, StorageType } from '@/utils';
 import { LoginFormPage, ProFormCheckbox } from '@ant-design/pro-components';
-import { useRequest } from 'ahooks';
 import { App, Tabs } from 'antd';
 import type { FC } from 'react';
 import { useEffect, useState } from 'react';
@@ -31,7 +29,7 @@ const PageLogin: FC = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
-  const { data: getCaptchaImageRes, run: getCaptchaImage } = useRequest(() => captchaGetGetCode({ secure: false }));
+  // const { data: getCaptchaImageRes, run: getCaptchaImage } = useRequest(() => captchaGetGetCode({ secure: false }));
 
   const handleLoginSuccess = async (autoLogin: boolean, token: string) => {
     setToken(autoLogin ? StorageType.LOCAL_STORAGE : StorageType.SESSION_STORAGE, `Bearer ${token}`);
@@ -50,14 +48,11 @@ const PageLogin: FC = () => {
   const { message } = App.useApp();
 
   const loginByUsername = async (autoLogin: boolean, data: UserNameLoginBo) => {
-    if (!getCaptchaImageRes) {
-      message.error('请先获取图片验证码');
-      return;
-    }
 
-    const { token } = await sysLoginPostLogin({ ...data, uuid: getCaptchaImageRes.uuid }, { secure: false });
 
-    await handleLoginSuccess(autoLogin, token);
+    const { payload } = await sysLoginPostLogin({ ...data,  }, { secure: false });
+    console.log(payload)
+    await handleLoginSuccess(autoLogin, payload.access_token);
   };
 
   const submit = async (e: FormData) => {
@@ -75,7 +70,6 @@ const PageLogin: FC = () => {
       }
     } catch (error) {
       if (loginType === LoginType.USERNAME) {
-        getCaptchaImage();
       }
     }
   };
@@ -89,10 +83,10 @@ const PageLogin: FC = () => {
   return (
     <div className="h-[100vh]">
       <LoginFormPage<FormData>
-        backgroundImageUrl="https://gw.alipayobjects.com/zos/rmsportal/FfdJeJRQWjEeGTpqgBKj.png"
-        logo="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
-        title="RuoYi X Admin"
-        subTitle="若依后台管理系统"
+        // backgroundImageUrl="https://gw.alipayobjects.com/zos/rmsportal/FfdJeJRQWjEeGTpqgBKj.png"
+        // logo="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
+        title="아이홈티 Admin"
+        subTitle="아이홈티"
         actions={<Actions />}
         onFinish={submit}
       >
@@ -102,23 +96,23 @@ const PageLogin: FC = () => {
           onChange={(activeKey) => setLoginType(activeKey as LoginType)}
           items={[
             {
-              label: '账号密码登录',
+              label: '로그인',
               key: LoginType.USERNAME,
             },
-            {
-              label: '手机号登录',
-              key: LoginType.MOBILE,
-            },
+            // {
+            //   label: '手机号登录',
+            //   key: LoginType.MOBILE,
+            // },
           ]}
         />
 
         {loginType === LoginType.USERNAME && (
-          <FormLoginByPwd captchaImageSrc={getCaptchaImageRes?.img} onCaptchaImageClick={getCaptchaImage} />
+          <FormLoginByPwd />
         )}
 
         {loginType === LoginType.MOBILE && <FormLoginByPhone />}
 
-        <ProFormCheckbox name="autoLogin">自动登录</ProFormCheckbox>
+        <ProFormCheckbox name="autoLogin">자동로그인</ProFormCheckbox>
       </LoginFormPage>
     </div>
   );
