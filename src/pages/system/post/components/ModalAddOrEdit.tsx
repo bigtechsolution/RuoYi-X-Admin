@@ -1,7 +1,7 @@
 import { useQueryDictSysNormalDisable } from '@/models';
 import { useAtomValueMainTableActions, useHideAddOrEditModal, useValueAddOrEditModal } from '@/pages/system/post/model';
 import type { SysPostAddBo } from '@/services/system/data-contracts';
-import { sysPostPostAdd, sysPostPostEdit } from '@/services/system/System';
+import {addUser, editUser, sysPostPostAdd,} from '@/services/system/System';
 import type { ProFormInstance } from '@ant-design/pro-components';
 import { ProForm, ProFormDigit, ProFormRadio, ProFormText, ProFormTextArea } from '@ant-design/pro-components';
 import { useMutation } from '@tanstack/react-query';
@@ -26,41 +26,12 @@ const ModalAddOrEdit: FC = () => {
   const mainTableActions = useAtomValueMainTableActions();
 
   // const { valueEnumSysNormalDisable, defaultValueSysNormalDisable } = useQueryDictSysNormalDisable();
-  const defaultValueSysNormalDisable= "NORMAL"
- const valueEnumSysNormalDisable= [
-    {
-      "createBy": "admin",
-      "createTime": "2022-06-19 06:27:41",
-      "updateBy": "admin",
-      "updateTime": "2023-02-18 21:21:37",
-      "dictCode": 6,
-      "dictSort": 1,
-      "dictLabel": "正常",
-      "dictValue": "NORMAL",
-      "dictType": "sys_normal_disable",
-      "cssClass": "",
-      "listClass": "success",
-      "isDefault": "YES",
-      "status": "NORMAL",
-      "remark": "正常状态"
-    },
-    {
-      "createBy": "admin",
-      "createTime": "2022-06-19 06:27:41",
-      "updateBy": "admin",
-      "updateTime": "2023-02-18 21:21:41",
-      "dictCode": 7,
-      "dictSort": 2,
-      "dictLabel": "停用",
-      "dictValue": "DISABLE",
-      "dictType": "sys_normal_disable",
-      "cssClass": "",
-      "listClass": "error",
-      "isDefault": "NO",
-      "status": "NORMAL",
-      "remark": "停用状态"
-    }
-  ]
+
+  const defaultValueSysNormalDisable= "DISABLE"
+ const valueEnumSysNormalDisable= new Map([
+   ["NORMAL", {text: "온"}],
+   ["DISABLE", {text: "아웃"}]
+ ]);
   const { mutate, isLoading } = useMutation(
     async () => {
       const values = await formRef.current?.validateFields();
@@ -68,13 +39,13 @@ const ModalAddOrEdit: FC = () => {
       if (!values) return;
 
       if (actionType === 'add') {
-        await sysPostPostAdd(values);
+        await addUser(values);
         return;
       }
 
-      await sysPostPostEdit({
+      await editUser({
         ...values,
-        postId: record!.postId,
+        id: record!.id,
       });
     },
     {
@@ -115,7 +86,7 @@ const ModalAddOrEdit: FC = () => {
 
         <ProFormRadio.Group
           name="status"
-          label="状态"
+          label="여부"
           valueEnum={valueEnumSysNormalDisable}
           initialValue={defaultValueSysNormalDisable}
         />

@@ -12,7 +12,9 @@ export const useAtomValueMainTableActions = () => useAtomValue(atomMainTableActi
 // 新增或编辑弹窗
 const atomAddOrEditModal = atomWithReset<{
   open: boolean;
-  record?: SysPostVo;
+  record?: any;
+  // record?: SysPostVo;
+
   actionType: 'add' | 'edit';
 }>({
   open: false,

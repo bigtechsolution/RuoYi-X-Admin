@@ -3432,3 +3432,23 @@ export const getUserList = (
     skipErrorHandler: true,
     ...params,
   });
+export const editUser = (data: any, params: RequestParams = {}) =>
+  request<RVoid>({
+    path: `/users/admin`,
+    method: 'patch',
+    body: data,
+    secure: true,
+    type: ContentType.Json,
+    skipErrorHandler: true,
+    ...params,
+  });
+export const addUser = (data: any, params: RequestParams = {}) =>
+  request<RVoid>({
+    path: `/users/admin`,
+    method: 'POST',
+    body: data,
+    secure: true,
+    type: ContentType.Json,
+    skipErrorHandler: false,
+    ...params,
+  });
