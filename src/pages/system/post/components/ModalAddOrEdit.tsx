@@ -65,19 +65,19 @@ const ModalAddOrEdit: FC = () => {
     <Modal
       open={open}
       onCancel={onCancel}
-      okText="提交"
+      okText="확인"
       okButtonProps={{
         loading: isLoading,
       }}
       onOk={() => mutate()}
-      title={actionType === 'add' ? '新增岗位' : '编辑岗位信息'}
+      title={actionType === 'add' ? '신규등록' : '수정하기'}
     >
       <ProForm<SysPostAddBo> submitter={false} formRef={formRef}>
-        <ProFormText name="postName" label="岗位名称" rules={[{ required: true }]} />
+        <ProFormText name="name" label="이름" rules={[{ required: true }]} />
 
-        <ProFormText name="postCode" label="岗位编码" rules={[{ required: true }]} />
+        <ProFormText name="email" label="email" rules={[{ required: true }]} />
 
-        <ProFormDigit name="postSort" label="显示顺序" rules={[{ required: true }]} initialValue={0} />
+        <ProFormDigit name="nickName" label="닉네임" rules={[{ required: true }]} initialValue={0} />
 
         <ProFormRadio.Group
           name="status"
@@ -86,7 +86,7 @@ const ModalAddOrEdit: FC = () => {
           initialValue={defaultValueSysNormalDisable}
         />
 
-        <ProFormTextArea name="remark" label="备注" />
+        <ProFormTextArea name="remark" label="확인" />
       </ProForm>
     </Modal>
   );

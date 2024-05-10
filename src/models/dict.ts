@@ -41,13 +41,14 @@ export const useQueryDictSysShowHide = () => {
 
 // sys_normal_disable 系统开关
 export const useQueryDictSysNormalDisable = () => {
-  const { data } = useQueryDict('sys_normal_disable');
-  const defaultValueSysNormalDisable: string | null = data?.defaultValue ?? null;
-  const valueEnumSysNormalDisable: ValueEnumMap<string> = data?.valueEnum ?? new Map();
-  return {
-    defaultValueSysNormalDisable,
-    valueEnumSysNormalDisable,
-  };
+  // const { data } = useQueryDict('sys_normal_disable');
+  // const defaultValueSysNormalDisable: string | null = data?.defaultValue ?? null;
+  // const valueEnumSysNormalDisable: ValueEnumMap<string> = data?.valueEnum ?? new Map();
+  // return {
+  //   defaultValueSysNormalDisable,
+  //   valueEnumSysNormalDisable,
+  // };
+  return {defaultValueSysNormalDisable:null,valueEnumSysNormalDisable:null};
 };
 
 // sys_yes_no 系统是否

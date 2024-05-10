@@ -11,7 +11,7 @@ const ButtonEdit: FC<{ record: SysPostVo }> = ({ record }) => {
   return (
     <Access accessible>
       <Button type="link" icon={<EditOutlined />} onClick={() => showEditModal(record)}>
-        编辑
+        수정
       </Button>
     </Access>
   );

@@ -49,8 +49,7 @@ export const convertPaginationParams = <T extends Record<string, any>>(
   const { current, ...restParams } = params;
 
   console.log(restParams)
-  console.log(current)
-  return restParams?.pageSize && current ? { pageNum: current, ...restParams } : params;
+  return restParams?.pageSize && current ? { pageNum: (current-1) * restParams?.pageSize, ...restParams } : params;
 };
 
 export const convertParams = <T extends Record<string, any>>(

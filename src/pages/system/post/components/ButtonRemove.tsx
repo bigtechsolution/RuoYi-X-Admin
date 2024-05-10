@@ -7,10 +7,10 @@ import { App, Button } from 'antd';
 import type { FC } from 'react';
 
 const ButtonRemove: FC<{
-  postId: number[];
+  id: number[];
   isBatch?: boolean;
   disabled?: boolean;
-}> = ({ postId, isBatch, disabled }) => {
+}> = ({ id, isBatch, disabled }) => {
   const text = isBatch ? '일괄삭제' : '삭제';
 
   const mainTableActions = useAtomValueMainTableActions();
@@ -18,8 +18,8 @@ const ButtonRemove: FC<{
   const { message, modal } = App.useApp();
 
   const { mutateAsync, isLoading } = useMutation(
-    async (postIds: number[]) => {
-      await sysPostPostRemove({ postIds });
+    async (ids: number[]) => {
+      await sysPostPostRemove({ ids });
     },
     {
       onSuccess: () => {
@@ -32,9 +32,9 @@ const ButtonRemove: FC<{
 
   const onRemove = () => {
     modal.confirm({
-      title: '删除岗位',
-      content: `确定删除岗位编号为 ${postId} 的岗位吗？`,
-      onOk: async () => mutateAsync(postId),
+      title: '삭제하기',
+      content: `아이디 ${id} 를 삭제하시겠습니까？`,
+      onOk: async () => mutateAsync(id),
       okButtonProps: {
         loading: isLoading,
       },
