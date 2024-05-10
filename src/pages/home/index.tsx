@@ -6,7 +6,7 @@ import type { FC } from 'react';
 const PageHome: FC = () => {
   return (
     <BasePageContainer>
-      <Result icon={<SmileOutlined />} title="Hi，欢迎回来!" />
+      <Result icon={<SmileOutlined />} title="Hi，어드민!" />
     </BasePageContainer>
   );
 };

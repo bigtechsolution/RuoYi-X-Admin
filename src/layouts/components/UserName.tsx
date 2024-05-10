@@ -14,7 +14,7 @@ enum MenuKey {
 const items: MenuProps['items'] = [
   {
     key: MenuKey.PROFILE,
-    label: '个人中心',
+    label: 'MY',
     icon: <ProfileOutlined />,
   },
   {
@@ -22,7 +22,7 @@ const items: MenuProps['items'] = [
   },
   {
     key: MenuKey.LOGOUT,
-    label: '退出登录',
+    label: 'LOGOUT',
     icon: <LogoutOutlined />,
   },
 ];

@@ -7,7 +7,7 @@ import ButtonExport from '@/pages/system/post/components/ButtonExport';
 import ButtonRemove from '@/pages/system/post/components/ButtonRemove';
 import { useActionRefMainTable } from '@/pages/system/post/model';
 import type { SysPostQueryBo, SysPostVo } from '@/services/system/data-contracts';
-import { sysPostPostList } from '@/services/system/System';
+import {getUserList, sysPostPostList} from '@/services/system/System';
 import { convertParams } from '@/utils';
 import type { ProColumns, ProFormInstance, ProTableProps } from '@ant-design/pro-components';
 import { useRef, useState } from 'react';
@@ -65,9 +65,14 @@ const TableMain = () => {
       actionRef={actionRef}
       rowKey="postId"
       request={async (...p) => {
-        const params = convertParams(...p);
-        setSearchParams(params);
-        return await sysPostPostList(params);
+        console.log(p)
+        const params :any = convertParams(...p);
+        console.log(params)
+
+        // const output= await getUserList({start:params.pageNum,limit:params.pageSize});
+        const output   = await sysPostPostList(params);
+        console.log(output)
+        return output;
       }}
       columns={columns}
       toolbar={{

@@ -65,7 +65,7 @@ const Layouts: FC = () => {
 
   return (
     <ProLayout
-      title="RuoYi X Admin"
+      title="아이홈티어드민"
       location={{ pathname }}
       menu={{ loading: isLoading }}
       loading={isLoading}

@@ -3413,3 +3413,22 @@ export const sysConfigGetConfigKeySkipErrorHandler = (
     skipErrorHandler: true,
     ...params,
   });
+
+export const getUserList = (
+  query: {
+    start?:number;
+    limit?:number;
+    type?: string;
+    name?: string;
+    phone?: string;
+  },
+  params: RequestParams = {},
+) =>
+  request<any>({
+    path: `/users/admin`,
+    method: 'GET',
+    query: query,
+    secure: true,
+    skipErrorHandler: true,
+    ...params,
+  });
