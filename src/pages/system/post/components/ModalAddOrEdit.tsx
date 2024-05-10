@@ -47,7 +47,7 @@ const ModalAddOrEdit: FC = () => {
       onSuccess: () => {
         mainTableActions?.reload();
         onCancel();
-        message.success(actionType === 'add' ? '新增成功' : '保存成功');
+        message.success(actionType === 'add' ? '성공적으로 추가되었습니다' : '성공적으로 수정 되었습니다');
       },
     },
   );
