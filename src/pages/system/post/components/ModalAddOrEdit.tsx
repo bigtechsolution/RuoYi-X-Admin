@@ -25,8 +25,42 @@ const ModalAddOrEdit: FC = () => {
 
   const mainTableActions = useAtomValueMainTableActions();
 
-  const { valueEnumSysNormalDisable, defaultValueSysNormalDisable } = useQueryDictSysNormalDisable();
-
+  // const { valueEnumSysNormalDisable, defaultValueSysNormalDisable } = useQueryDictSysNormalDisable();
+  const defaultValueSysNormalDisable= "NORMAL"
+ const valueEnumSysNormalDisable= [
+    {
+      "createBy": "admin",
+      "createTime": "2022-06-19 06:27:41",
+      "updateBy": "admin",
+      "updateTime": "2023-02-18 21:21:37",
+      "dictCode": 6,
+      "dictSort": 1,
+      "dictLabel": "正常",
+      "dictValue": "NORMAL",
+      "dictType": "sys_normal_disable",
+      "cssClass": "",
+      "listClass": "success",
+      "isDefault": "YES",
+      "status": "NORMAL",
+      "remark": "正常状态"
+    },
+    {
+      "createBy": "admin",
+      "createTime": "2022-06-19 06:27:41",
+      "updateBy": "admin",
+      "updateTime": "2023-02-18 21:21:41",
+      "dictCode": 7,
+      "dictSort": 2,
+      "dictLabel": "停用",
+      "dictValue": "DISABLE",
+      "dictType": "sys_normal_disable",
+      "cssClass": "",
+      "listClass": "error",
+      "isDefault": "NO",
+      "status": "NORMAL",
+      "remark": "停用状态"
+    }
+  ]
   const { mutate, isLoading } = useMutation(
     async () => {
       const values = await formRef.current?.validateFields();
