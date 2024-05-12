@@ -10,14 +10,14 @@ const Actions: FC = () => {
         <span className="text-sm font-normal text-neutral-400"></span>
       </Divider>
 
-      <div
-        onClick={() => {
-          message.info('sss');
-        }}
-        className="flex justify-center items-center cursor-pointer rounded-full h-[40px] w-[40px] border-solid border border-gray-300"
-      >
-        <WechatOutlined style={{ fontSize: '20px', color: '#00ac84' }} />
-      </div>
+      {/* <div */}
+      {/*   onClick={() => { */}
+      {/*     message.info('sss'); */}
+      {/*   }} */}
+      {/*   className="flex justify-center items-center cursor-pointer rounded-full h-[40px] w-[40px] border-solid border border-gray-300" */}
+      {/* > */}
+      {/*   <WechatOutlined style={{ fontSize: '20px', color: '#00ac84' }} /> */}
+      {/* </div> */}
     </div>
   );
 };

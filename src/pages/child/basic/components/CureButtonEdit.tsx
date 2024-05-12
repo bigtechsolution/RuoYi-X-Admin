@@ -1,19 +1,19 @@
 import { Access } from '@/components';
-import { useShowEditModal } from '@/pages/therapist/basic/model';
+import {useShowCureEditModal, useShowEditModal} from '../model';
 import { EditOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import type { FC } from 'react';
 
-const ButtonEdit: FC<{ record: any }> = ({ record }) => {
-  const showEditModal = useShowEditModal();
+const CureButtonEdit: FC<{ record: any }> = ({ record }) => {
+  const showEditModal = useShowCureEditModal();
 
   return (
     <Access accessible>
       <Button type="link" icon={<EditOutlined />} onClick={() => showEditModal(record)}>
-        수정
+        치료사항수정
       </Button>
     </Access>
   );
 };
 
-export default ButtonEdit;
+export default CureButtonEdit;

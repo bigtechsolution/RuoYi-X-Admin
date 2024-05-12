@@ -1,5 +1,5 @@
 import { Access } from '@/components';
-import { useAtomValueMainTableActions } from '@/pages/system/post/model';
+import { useAtomValueMainTableActions } from '../model';
 import {removeUser, } from '@/services/system/System';
 import { DeleteOutlined } from '@ant-design/icons';
 import { useMutation } from '@tanstack/react-query';

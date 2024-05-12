@@ -3413,7 +3413,24 @@ export const sysConfigGetConfigKeySkipErrorHandler = (
     skipErrorHandler: true,
     ...params,
   });
-
+export const getTherapistList = (
+  query: {
+    start?:number;
+    limit?:number;
+    type?: string;
+    name?: string;
+    phone?: string;
+  },
+  params: RequestParams = {},
+) =>
+  request<any>({
+    path: `/therapist/admin`,
+    method: 'GET',
+    query: query,
+    secure: true,
+    skipErrorHandler: true,
+    ...params,
+  });
 export const getUserList = (
   query: {
     start?:number;
@@ -3450,5 +3467,74 @@ export const addUser = (data: any, params: RequestParams = {}) =>
     secure: true,
     type: ContentType.Json,
     skipErrorHandler: false,
+    ...params,
+  });
+export const removeUser = (
+  query: {
+    /** 岗位ID串 */
+    ids: number[];
+  },
+  params: RequestParams = {},
+) =>
+  request<RVoid>({
+    path: `/users/admin`,
+    method: 'DELETE',
+    query: query,
+    secure: true,
+    skipErrorHandler: false,
+    ...params,
+  });
+export const exportUser = (
+  query: {
+    start?:number;
+    limit?:number;
+    type?: string;
+    name?: string;
+    phone?: string;
+  },
+  params: RequestParams = {},
+) =>
+  request<any>({
+    path: `/users/admin`,
+    method: 'GET',
+    query: query,
+    secure: true,
+    skipErrorHandler: true,
+    ...params,
+  });
+export const getTherapyList = (
+  query: {
+    start?:number;
+    limit?:number;
+    type?: string;
+    name?: string;
+    phone?: string;
+  },
+  params: RequestParams = {},
+) =>
+  request<any>({
+    path: `/therapy/admin`,
+    method: 'GET',
+    query: query,
+    secure: true,
+    skipErrorHandler: true,
+    ...params,
+  });
+export const getRecruitList = (
+  query: {
+    start?:number;
+    limit?:number;
+    type?: string;
+    name?: string;
+    phone?: string;
+  },
+  params: RequestParams = {},
+) =>
+  request<any>({
+    path: `/recruit/admin`,
+    method: 'GET',
+    query: query,
+    secure: true,
+    skipErrorHandler: true,
     ...params,
   });

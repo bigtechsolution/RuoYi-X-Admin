@@ -18,14 +18,13 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 const bootstrap = () => {
   const basename = import.meta.env.BASE_URL;
 
-  // 不存在 token 时跳转到登录页
   const currBasename = window.location.pathname.replace(basename, '/');
   if (currBasename !== '/login' && !checkToken()) {
     redirectToLoginPage();
     return;
   }
 
-  dayjs.locale('zh-cn');
+  dayjs.locale('ko-kr');
 
   const queryClient = new QueryClient({
     defaultOptions: {

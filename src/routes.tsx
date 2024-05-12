@@ -30,6 +30,37 @@ export const layoutRoutes: RouteObject[] = [
         element: lazyLoad('home'),
       },
       {
+        path: 'therapist',
+        children: [
+          {
+            path: 'basic',
+            element: lazyLoad('therapist/basic'),
+          },
+          {
+            path: 'cost',
+            element: lazyLoad('therapist/cost'),
+          },
+        ]
+      },
+      {
+        path: 'user',
+        children: [
+          {
+            path: 'basic',
+            element: lazyLoad('user/basic'),
+          },
+          ]
+      },
+      {
+        path: 'child',
+        children: [
+          {
+            path: 'basic',
+            element: lazyLoad('child/basic'),
+          },
+        ]
+      },
+      {
         path: 'system',
         children: [
           {

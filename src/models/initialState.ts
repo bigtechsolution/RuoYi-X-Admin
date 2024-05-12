@@ -39,13 +39,79 @@ export const useQueryInitialState = () => {
           "component": "Layout",
           "alwaysShow": false,
           "meta": {"title": "settings", "icon": "ProfileOutlined", "noCache": true, "link": null}
-        }, {
+        },
+        {
+          "name": "therapist",
+          "path": "therapist",
+          "hidden": false,
+          "redirect": "noRedirect",
+          "component": "Layout",
+          "alwaysShow": true,
+          "meta": {"title": "치료사정보", "icon": "ClothesGloves", "noCache": true, "link": null},
+          "children": [
+            {
+              "name": "basic",
+              "path": "basic",
+              "hidden": false,
+              "alwaysShow": false,
+              "meta": {"title": "치료사정보", "": "post", "noCache": true, "link": null}
+            },
+            {
+              "name": "cost",
+              "path": "cost",
+              "hidden": false,
+              "alwaysShow": false,
+              "meta": {"title": "치료정보", "": "cost", "noCache": true, "link": null}
+            }
+          ]
+        },
+          {
+          "name": "user",
+          "path": "user",
+          "hidden": false,
+          "redirect": "noRedirect",
+          "component": "Layout",
+          "alwaysShow": true,
+          "meta": {"title": "유저정보", "icon": "ClothesGloves", "noCache": true, "link": null},
+          "children": [
+
+            {
+              "name": "basic",
+              "path": "basic",
+              "hidden": false,
+              "component": "system/post/index",
+              "alwaysShow": false,
+              "meta": {"title": "유저기본", "": "post", "noCache": true, "link": null}
+            }
+          ]
+        },
+          {
+            "name": "child",
+            "path": "child",
+            "hidden": false,
+            "redirect": "noRedirect",
+            "component": "Layout",
+            "alwaysShow": true,
+            "meta": {"title": "아동정보", "icon": "ClothesGloves", "noCache": true, "link": null},
+            "children": [
+
+              {
+                "name": "basic",
+                "path": "basic",
+                "hidden": false,
+                "component": "child/basic/index",
+                "alwaysShow": false,
+                "meta": {"title": "모집공고", "": "child", "noCache": true, "link": null}
+              }
+            ]
+          }
+        , {
           "name": "/",
           "path": "/",
           "hidden": true,
           "component": "Layout",
           "alwaysShow": false,
-          "meta": {"title": "첫페이지", "icon": "CoatHanger", "noCache": true, "link": null}
+          "meta": {"title": "첫페이지", "icon": "", "noCache": true, "link": null}
         }, {
           "name": "System",
           "path": "system",
@@ -53,7 +119,7 @@ export const useQueryInitialState = () => {
           "redirect": "noRedirect",
           "component": "Layout",
           "alwaysShow": true,
-          "meta": {"title": "유저정보", "icon": "ClothesGloves", "noCache": true, "link": null},
+          "meta": {"title": "유저정보", "icon": "", "noCache": true, "link": null},
           "children": [
             //   {
             //   "name": "User",
@@ -107,7 +173,7 @@ export const useQueryInitialState = () => {
           "component": "Layout",
           "alwaysShow": false,
           "meta": {
-            "title": "RuoYiX官网",
+            "title": "dd",
             "icon": "HomeOutlined",
             "noCache": true,
             "link": "https://github.com/QNAV/RuoYi-X-Plus"
@@ -119,21 +185,21 @@ export const useQueryInitialState = () => {
           "redirect": "noRedirect",
           "component": "Layout",
           "alwaysShow": true,
-          "meta": {"title": "测试菜单", "icon": "BugOutlined", "noCache": true, "link": null},
+          "meta": {"title": "cc", "icon": "BugOutlined", "noCache": true, "link": null},
           "children": [{
             "name": "Tree",
             "path": "tree",
             "hidden": false,
             "component": "demo/tree/index",
             "alwaysShow": false,
-            "meta": {"title": "测试树表", "icon": "", "noCache": true, "link": null}
+            "meta": {"title": "www", "icon": "", "noCache": true, "link": null}
           }, {
             "name": "Demo",
             "path": "demo",
             "hidden": false,
             "component": "demo/demo/index",
             "alwaysShow": false,
-            "meta": {"title": "测试单表", "icon": "#", "noCache": true, "link": null}
+            "meta": {"title": "IHOMET", "icon": "#", "noCache": true, "link": null}
           }]
         }])
       };

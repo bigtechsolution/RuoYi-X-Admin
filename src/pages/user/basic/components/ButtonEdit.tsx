@@ -1,10 +1,11 @@
 import { Access } from '@/components';
-import { useShowEditModal } from '@/pages/therapist/basic/model';
+import { useShowEditModal } from '@/pages/system/post/model';
+import type { SysPostVo } from '@/services/system/data-contracts';
 import { EditOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import type { FC } from 'react';
 
-const ButtonEdit: FC<{ record: any }> = ({ record }) => {
+const ButtonEdit: FC<{ record: SysPostVo }> = ({ record }) => {
   const showEditModal = useShowEditModal();
 
   return (

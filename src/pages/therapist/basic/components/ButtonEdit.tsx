@@ -1,5 +1,5 @@
 import { Access } from '@/components';
-import { useShowEditModal } from '@/pages/therapist/basic/model';
+import { useShowEditModal } from '../model';
 import { EditOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import type { FC } from 'react';

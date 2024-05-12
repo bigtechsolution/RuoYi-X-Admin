@@ -7,10 +7,10 @@ export const NotExist: FC = () => {
     <Result
       status="404"
       title="404"
-      subTitle="抱歉，您访问的页面不存在。"
+      subTitle="잘못된페이지."
       extra={
         <Link to="/" reloadDocument>
-          返回首页
+          돌아가기
         </Link>
       }
     />

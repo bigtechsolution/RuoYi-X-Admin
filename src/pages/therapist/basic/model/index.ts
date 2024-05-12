@@ -1,5 +1,4 @@
 import { useInitActionType } from '@/hooks';
-import type { SysPostVo } from '@/services/system/data-contracts';
 import type { ActionType } from '@ant-design/pro-components';
 import { atom, useAtomValue, useSetAtom } from 'jotai';
 import { atomWithReset, useResetAtom } from 'jotai/utils';
@@ -11,20 +10,26 @@ export const useAtomValueMainTableActions = () => useAtomValue(atomMainTableActi
 // 新增或编辑弹窗
 const atomAddOrEditModal = atomWithReset<{
   open: boolean;
+  cureOpen: boolean;
   record?: any;
   // record?: SysPostVo;
   actionType: 'add' | 'edit';
 }>({
   open: false,
+  cureOpen: false,
   actionType: 'add',
 });
 export const useShowAddModal = () => {
   const showAddModal = useSetAtom(atomAddOrEditModal);
-  return () => showAddModal({ open: true, actionType: 'add' });
+  return () => showAddModal({ open: true, cureOpen:false, actionType: 'add' });
 };
 export const useShowEditModal = () => {
   const showEditModal = useSetAtom(atomAddOrEditModal);
-  return (record: SysPostVo) => showEditModal({ open: true, actionType: 'edit', record });
+  return (record: any) => showEditModal({ open: true,cureOpen:false, actionType: 'edit', record });
+};
+export const useShowCureEditModal = () => {
+  const showEditModal = useSetAtom(atomAddOrEditModal);
+  return (record: any) => showEditModal({ open:false, cureOpen: true, actionType: 'edit', record });
 };
 export const useHideAddOrEditModal = () => useResetAtom(atomAddOrEditModal);
 export const useValueAddOrEditModal = () => useAtomValue(atomAddOrEditModal);
