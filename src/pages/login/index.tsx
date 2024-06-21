@@ -50,9 +50,9 @@ const PageLogin: FC = () => {
   const loginByUsername = async (autoLogin: boolean, data: UserNameLoginBo) => {
 
 
-    const { payload } = await sysLoginPostLogin({ ...data,  }, { secure: false });
+    const payload = await sysLoginPostLogin({ ...data,  }, { secure: false });
     console.log(payload)
-    await handleLoginSuccess(autoLogin, payload.access_token);
+    await handleLoginSuccess(autoLogin, payload.accessToken);
   };
 
   const submit = async (e: FormData) => {

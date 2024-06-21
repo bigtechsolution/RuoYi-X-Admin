@@ -12,15 +12,15 @@ import { convertParams } from '@/utils';
 import type { ProColumns, ProFormInstance, ProTableProps } from '@ant-design/pro-components';
 import { useRef, useState } from 'react';
 
-const useColumns = (): ProColumns<SysPostVo>[] => {
+const useColumns = (): ProColumns<any>[] => {
   // const { valueEnumSysNormalDisable } = useQueryDictSysNormalDisable();
 
   return [
     { dataIndex: 'id', key: 'id', title: '키', valueType: 'text', hideInSearch: true },
-    { dataIndex: 'username', key: 'username', title: 'username', valueType: 'text' },
+    { dataIndex: 'username', key: 'username', title: 'username', valueType: 'text' ,hideInSearch: true},
     { dataIndex: 'name', key: 'name', title: '이름', valueType: 'text' },
     { dataIndex: 'email', key: 'email', title: 'email', valueType: 'text' },
-    { dataIndex: 'authCount', key: 'authCount', title: '인증횟수', valueType: 'text' },
+    { dataIndex: 'authCount', key: 'authCount', title: '인증횟수', valueType: 'text' ,hideInSearch: true},
 
     // {
     //   title: '오름차순정렬',
@@ -52,7 +52,7 @@ const tableAlertOptionRender: ProTableProps<SysPostVo, 'text'>['tableAlertOption
 };
 
 const TableMain = () => {
-  const [searchParams, setSearchParams] = useState<SearchParams>({});
+  const [searchParams, ] = useState<SearchParams>({});
 
   const formRef = useRef<ProFormInstance<SysPostQueryBo>>();
 

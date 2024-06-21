@@ -26,6 +26,7 @@ function formatPhoneNumber(phoneNumber: string): string {
     return phoneNumber;
   }
 }
+
 function formatDateWithAge(dateString: string): string {
   // 날짜 문자열을 Date 객체로 변환
   const year = dateString.substring(0, 4);
@@ -34,6 +35,7 @@ function formatDateWithAge(dateString: string): string {
 
   return `${year}-${month}-${day}`;
 }
+
 function formatDateWithYYMM(dateString: string): string {
   // 날짜 문자열을 Date 객체로 변환
   const year = dateString.substring(0, 4);
@@ -59,13 +61,14 @@ function formatDateWithYYMM(dateString: string): string {
   const ageString = `${years}년 ${months}개월생`;
   return `${formattedDate}, ${ageString}`;
 }
+
 const useColumns = (): ProColumns<any>[] => {
   // const { valueEnumSysNormalDisable } = useQueryDictSysNormalDisable();
 
   return [
     {dataIndex: 'id', key: 'id', title: '키', valueType: 'text', hideInSearch: true},
     {
-      dataIndex: 'email', key: 'email', title: '아동명', valueType: 'text', render: (_, record) =>
+      dataIndex: 'email', key: 'email', title: '아동명', valueType: 'text',search:false, render: (_, record) =>
         record.child ? (
           <>
             {record.child?.name}
@@ -76,7 +79,7 @@ const useColumns = (): ProColumns<any>[] => {
     },
 
     {
-      dataIndex: 'sexType', key: 'sexType', title: '성별', valueType: 'text', render: (_, record) =>
+      dataIndex: 'sexType', key: 'sexType', title: '성별', valueType: 'text',search:false, render: (_, record) =>
         record.child ? (
           <>
             {record.child?.sexType}
@@ -86,7 +89,7 @@ const useColumns = (): ProColumns<any>[] => {
         ),
     },
     {
-      dataIndex: 'birth', key: 'birth', title: '생년월일', valueType: 'text', render: (_, record) =>
+      dataIndex: 'birth', key: 'birth', title: '생년월일', valueType: 'text', search:false,render: (_, record) =>
         record.child ? (
           <>
             {formatDateWithAge(record.child?.birth)}
@@ -94,8 +97,8 @@ const useColumns = (): ProColumns<any>[] => {
         ) : (
           <>-</>
         ),
-    },    {
-      dataIndex: 'birth', key: 'birth', title: '부모님', valueType: 'text', render: (_, record) =>
+    }, {
+      dataIndex: 'birth', key: 'birth', title: '부모님', valueType: 'text', search:false,render: (_, record) =>
         record.owner ? (
           <>
             {record.owner?.name}
@@ -103,26 +106,21 @@ const useColumns = (): ProColumns<any>[] => {
         ) : (
           <>-</>
         ),
-    },       {
-      dataIndex: 'birth', key: 'birth', title: '연락처', valueType: 'text', render: (_, record) =>
-        record.child ? (
-          <>
-            {record.owner?.phone}
-          </>
-        ) : (
-          <>-</>
-        ),
-    },      {
-      dataIndex: 'cureType', key: 'cureType', title: '치료타입', valueType: 'text', render: (_, record) =>
-        record.child ? (
-          <>
-            {record.cureType}
-          </>
-        ) : (
-          <>-</>
-        ),
-    },    {
-      dataIndex: 'weekCureCount', key: 'weekCureCount', title: '주치료횟수', valueType: 'text', render: (_, record) =>
+    }, {
+      dataIndex: 'birth', key: 'birth', title: '연락처', valueType: 'text',search:false, render: (_, record) => {
+        return record.owner?.phone;
+      }
+    }
+    , {
+      dataIndex: 'cureType',
+      key: 'cureType',
+      title: '치료타입',
+      valueType: 'text',
+      render: (_, record) => {
+        return record.cureType;
+      }
+    }, {
+      dataIndex: 'weekCureCount', key: 'weekCureCount', title: '주치료횟수', valueType: 'text', search:false,render: (_, record) =>
         record.child ? (
           <>
             {record.weekCureCount}회
@@ -130,15 +128,31 @@ const useColumns = (): ProColumns<any>[] => {
         ) : (
           <>-</>
         ),
-    },        {
-      dataIndex: 'applicants', key: 'applicants', title: '지원자수', valueType: 'text', render: (_, record) =>
-        record.child ? (
+    }, {
+      dataIndex: 'applicants', key: 'applicants', title: '지원자수', valueType: 'text', search:false,render: (_, record) =>
+        record.applicants ? (
           <>
             {record.applicants?.length}명
           </>
         ) : (
           <>-</>
         ),
+    },
+    {
+      dataIndex: 'status',
+      key: 'status',
+      title: '보증금',
+      valueType: 'text',
+      search:false,
+      render: (_, record) => {
+        const statusMap = {
+          '보증금납부': '입금',
+          '보증금환급완료': '환급완료',
+          '미입금': '미입금'
+        };
+
+        return <>{statusMap[record.status] || '미입금'}</>;
+      }
     },
     {
       dataIndex: 'status',
@@ -157,8 +171,8 @@ const useColumns = (): ProColumns<any>[] => {
         return (
           <>
             <ButtonEdit record={entity}/>
-            <CureButtonEdit record={entity}/>
-            <ButtonRemove id={[entity.id]}/>
+            {/* <CureButtonEdit record={entity}/> */}
+            {/* <ButtonRemove id={[entity.id]}/> */}
           </>
         );
       },

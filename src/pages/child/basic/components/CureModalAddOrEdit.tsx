@@ -1,5 +1,5 @@
 import {useAtomValueMainTableActions, useHideAddOrEditModal, useValueAddOrEditModal} from '../model';
-import {addUser, editUser,} from '@/services/system/System';
+import {addTherapist, addUser, editTherapist, editUser,} from '@/services/system/System';
 import {ProFormDigit, ProFormInstance} from '@ant-design/pro-components';
 import {ProFormSelect} from '@ant-design/pro-components';
 import {ProForm, ProFormRadio, ProFormText,} from '@ant-design/pro-components';
@@ -87,11 +87,11 @@ const CureModalAddOrEdit: FC = () => {
       if (!values) return;
 
       if (actionType === 'add') {
-        await addUser(values);
+        await addTherapist(values);
         return;
       }
 
-      await editUser({
+      await editTherapist({
         ...values,
         id: record!.id,
       });
@@ -115,6 +115,8 @@ const CureModalAddOrEdit: FC = () => {
     }
   }, [open]);
 
+  // @ts-ignore
+  // @ts-ignore
   return (
     <Modal
       open={cureOpen}
@@ -128,6 +130,7 @@ const CureModalAddOrEdit: FC = () => {
     >
       <ProForm<any> submitter={false} formRef={formRef}  onFinish={(values) => {
         console.log('Form values:', values);
+        return null
       }}>
 
         <ProFormSelect name="mainSubject" label="주치료과목" valueEnum={cureTypeValueEnum} rules={[{required: true}]}/>
@@ -139,46 +142,45 @@ const CureModalAddOrEdit: FC = () => {
         <ProFormSelect
           name="largeCode1"
           label="시 선택"
-          value={selectedCity}
+
           options={koreaRegions.map(region => ({label: region.label, value: region.code}))}
           onChange={handleCityChange}
           placeholder="시를 선택하세요"
-          fieldProps={{showSearch: true}}
+          fieldProps={{showSearch: true,value:selectedCity}}
         />
         <ProFormSelect
           name="mediumCode1"
           label="군 선택"
           mode="multiple"
-          value={selectedCounties}
           options={countyOptions.map(county => ({label: county.name, value: county.code}))}
           onChange={handleCountyChange}
           placeholder="먼저 시를 선택하세요"
           fieldProps={{
             showSearch: true,
-            maxTagCount: 3
+            maxTagCount: 3,
+            value:selectedCounties
           }}
           disabled={!selectedCity}
         />
         <ProFormSelect
           name="largeCode2"
           label="시 선택"
-          value={selectedCity2}
           options={koreaRegions.map(region => ({label: region.label, value: region.code}))}
           onChange={handleCityChange2}
           placeholder="시를 선택하세요"
-          fieldProps={{showSearch: true}}
+          fieldProps={{showSearch: true,value:selectedCity2}}
         />
         <ProFormSelect
           name="mediumCode2"
           label="군 선택"
           mode="multiple"
-          value={selectedCounties2}
           options={countyOptions.map(county => ({label: county.name, value: county.code}))}
           onChange={handleCountyChange2}
           placeholder="먼저 시를 선택하세요"
           fieldProps={{
             showSearch: true,
-            maxTagCount: 3
+            maxTagCount: 3,
+            value:selectedCounties2
           }}
           disabled={!selectedCity}
         />

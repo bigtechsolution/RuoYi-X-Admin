@@ -1,4 +1,4 @@
-import { checkToken, clearToken, getToken } from '@/utils';
+import { checkToken,  getToken } from '@/utils';
 import { message } from 'antd';
 import type { AxiosRequestConfig, AxiosResponse, ResponseType } from 'axios';
 import axios from 'axios';

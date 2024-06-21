@@ -1,7 +1,6 @@
-import { useQueryDictSysNormalDisable } from '@/models';
 import { useAtomValueMainTableActions, useHideAddOrEditModal, useValueAddOrEditModal } from '@/pages/system/post/model';
 import type { SysPostAddBo } from '@/services/system/data-contracts';
-import {addUser, editUser, sysPostPostAdd,} from '@/services/system/System';
+import {addUser, editUser,} from '@/services/system/System';
 import type { ProFormInstance } from '@ant-design/pro-components';
 import { ProForm, ProFormDigit, ProFormRadio, ProFormText, ProFormTextArea } from '@ant-design/pro-components';
 import { useMutation } from '@tanstack/react-query';

@@ -5,13 +5,13 @@ const FormLoginByPwd = () => {
   return (
     <>
       <ProFormText
-        name="username"
+        name="email"
         fieldProps={{
           size: 'large',
           prefix: <UserOutlined />,
         }}
-        placeholder="admin"
-        initialValue="admin"
+        placeholder=""
+        initialValue=""
         rules={[
           {
             required: true,
@@ -25,8 +25,8 @@ const FormLoginByPwd = () => {
           size: 'large',
           prefix: <LockOutlined />,
         }}
-        placeholder="admin123"
-        initialValue="ihomet1!"
+        placeholder=""
+        initialValue=""
         rules={[
           {
             required: true,

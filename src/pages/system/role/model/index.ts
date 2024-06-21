@@ -10,8 +10,8 @@ import { atom, useAtomValue, useSetAtom } from 'jotai';
 import { atomWithReset, useResetAtom } from 'jotai/utils';
 import { useEffect } from 'react';
 
-// 角色列表操作
-const atomRoleListActions = atom<ActionType | undefined>(undefined);
+const atomRoleListActions = atomWithReset<ActionType | undefined>(undefined);
+// const atomRoleListActions = atom<ActionType | undefined>(undefined);
 export const useAtomValueRoleListActions = () => useAtomValue(atomRoleListActions);
 export const useActionRefRoleList = () => useInitActionType(atomRoleListActions);
 

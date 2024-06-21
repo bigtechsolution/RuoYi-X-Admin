@@ -4,7 +4,7 @@ import type { ActionType } from '@ant-design/pro-components';
 import { atom, useAtomValue, useSetAtom } from 'jotai';
 import { atomWithReset, useResetAtom } from 'jotai/utils';
 
-const atomMainTableActions = atom<ActionType | undefined>(undefined);
+const atomMainTableActions = atomWithReset<ActionType | undefined>(undefined);
 export const useAtomValueMainTableActions = () => useAtomValue(atomMainTableActions);
 export const useActionRefMainTable = () => useInitActionType(atomMainTableActions);
 

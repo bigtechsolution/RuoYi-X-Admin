@@ -6,7 +6,7 @@ import { atomWithReset, useResetAtom } from 'jotai/utils';
 
 export * from './columns';
 
-const atomMainTableActions = atom<ActionType | undefined>(undefined);
+const atomMainTableActions = atomWithReset<ActionType | undefined>(undefined);
 export const useAtomValueMainTableActions = () => useAtomValue(atomMainTableActions);
 export const useActionRefMainTable = () => useInitActionType(atomMainTableActions);
 

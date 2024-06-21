@@ -61,7 +61,7 @@ const TableMain = () => {
   const columns = useColumns();
 
   return (
-    <BaseProTable<SysPostVo, SysPostQueryBo>
+    <BaseProTable<any, any>
       formRef={formRef}
       actionRef={actionRef}
       rowKey="id"

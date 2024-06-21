@@ -1,7 +1,6 @@
 import { Access } from '@/components';
 import type { SysPostPageQueryBo, SysPostQueryBo } from '@/services/system/data-contracts';
-import {exportUser, sysPostPostExportSkipErrorHandler} from '@/services/system/System';
-import { download } from '@/utils';
+import {exportUser, } from '@/services/system/System';
 import { DownloadOutlined } from '@ant-design/icons';
 import { useMutation } from '@tanstack/react-query';
 import { App, Button } from 'antd';

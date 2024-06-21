@@ -3,7 +3,7 @@ import type { ActionType } from '@ant-design/pro-components';
 import { atom, useAtomValue, useSetAtom } from 'jotai';
 import { atomWithReset, useResetAtom } from 'jotai/utils';
 
-const atomMainTableActions = atom<ActionType | undefined>(undefined);
+const atomMainTableActions = atomWithReset<ActionType | undefined>(undefined);
 export const useActionRefMainTable = () => useInitActionType(atomMainTableActions);
 export const useAtomValueMainTableActions = () => useAtomValue(atomMainTableActions);
 
@@ -29,7 +29,11 @@ export const useShowEditModal = () => {
 };
 export const useShowCureEditModal = () => {
   const showEditModal = useSetAtom(atomAddOrEditModal);
-  return (record: any) => showEditModal({ open:false, cureOpen: true, actionType: 'edit', record });
+  // return (record: any) => showEditModal({ open:false, cureOpen: true, actionType: 'edit', record });
+  return (record: any) => {
+    console.log('Record:', record);
+    showEditModal({ open:false, cureOpen: true, actionType: 'edit', record });
+  }
 };
 export const useHideAddOrEditModal = () => useResetAtom(atomAddOrEditModal);
 export const useValueAddOrEditModal = () => useAtomValue(atomAddOrEditModal);

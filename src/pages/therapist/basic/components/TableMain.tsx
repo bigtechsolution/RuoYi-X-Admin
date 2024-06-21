@@ -31,10 +31,10 @@ const useColumns = (): ProColumns<any>[] => {
   // const { valueEnumSysNormalDisable } = useQueryDictSysNormalDisable();
 
   return [
-    {dataIndex: 'id', key: 'id', title: '키', valueType: 'text', hideInSearch: true},
-    {dataIndex: 'username', key: 'username', title: '유저아이디', valueType: 'text'},
+    {dataIndex: 'id', key: 'id', title: '키', valueType: 'text', hideInSearch: true,search:false},
+    {dataIndex: 'username', key: 'username', title: '유저아이디', valueType: 'text',search:false},
     {
-      dataIndex: 'email', key: 'email', title: '이메일', valueType: 'text', render: (_, record) =>
+      dataIndex: 'email', key: 'email', title: '이메일', valueType: 'text',search:false, render: (_, record) =>
         record.user?.email ? (
           <>
             {formatPhoneNumber(record.user?.email)}
@@ -49,6 +49,7 @@ const useColumns = (): ProColumns<any>[] => {
       dataIndex: 'cost',
       key: 'cost',
       title: '치료비',
+      search:false,
       valueType: 'text',
       render: (cost) => {
         // Format the cost as a string with commas
@@ -59,6 +60,7 @@ const useColumns = (): ProColumns<any>[] => {
       dataIndex: 'cost',
       key: 'exclusiveCost',
       title: '고정치료비',
+      search:false,
       valueType: 'text',
       render: (cost) => {
         // Format the cost as a string with commas
@@ -69,15 +71,16 @@ const useColumns = (): ProColumns<any>[] => {
       dataIndex: 'careerText',
       key: 'careerText',
       title: '경력',
+      search:false,
       valueType: 'text',
       render: (careerText) => {
         // Format the cost as a string with commas
         return careerText;
       }
     },
-    {dataIndex: 'sex', key: 'sex', title: '성별', valueType: 'text'},
+    {dataIndex: 'sex', key: 'sex', title: '성별', valueType: 'text',search:false,},
     {
-      dataIndex: 'idx', key: 'phone', title: '연락처', valueType: 'text', render: (_, record) =>
+      dataIndex: 'idx', key: 'phone', title: '연락처', valueType: 'text',search:false, render: (_, record) =>
         record.phone ? (
           <>
             {formatPhoneNumber(record.phone)}
@@ -87,7 +90,7 @@ const useColumns = (): ProColumns<any>[] => {
         ),
     },
     {
-      dataIndex: 'id', key: 'phone', title: '가능지역', valueType: 'text', render: (_, record) =>
+      dataIndex: 'id', key: 'phone', title: '가능지역', valueType: 'text', search:false,render: (_, record) =>
        record.regions ? (
         <ul>
           {record.regions.map((region :any, index :any) => (
@@ -102,6 +105,7 @@ const useColumns = (): ProColumns<any>[] => {
       dataIndex: 'status',
       key: 'status',
       title: '상태',
+      search:false,
       valueType: 'text',
       render: (status) => {
         // Format the cost as a string with commas
@@ -115,8 +119,8 @@ const useColumns = (): ProColumns<any>[] => {
         return (
           <>
             <ButtonEdit record={entity}/>
-            <CureButtonEdit record={entity}/>
-            <ButtonRemove id={[entity.id]}/>
+            {/* <CureButtonEdit record={entity}/> */}
+            {/* <ButtonRemove id={[entity.id]}/> */}
           </>
         );
       },

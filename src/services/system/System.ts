@@ -3431,6 +3431,32 @@ export const getTherapistList = (
     skipErrorHandler: true,
     ...params,
   });
+export const editherapist = (data: any, params: RequestParams = {}) =>
+  request<RVoid>({
+    path: `/therapist/admin`,
+    method: 'patch',
+    body: data,
+    secure: true,
+    type: ContentType.Json,
+    skipErrorHandler: true,
+    ...params,
+  });
+export const getAgencyList = (
+  query: {
+    start?:number;
+    limit?:number;
+    name?: string;
+  },
+  params: RequestParams = {},
+) =>
+  request<any>({
+    path: `/agency/admin`,
+    method: 'GET',
+    query: query,
+    secure: true,
+    skipErrorHandler: true,
+    ...params,
+  });
 export const getUserList = (
   query: {
     start?:number;
@@ -3459,9 +3485,20 @@ export const editUser = (data: any, params: RequestParams = {}) =>
     skipErrorHandler: true,
     ...params,
   });
+
 export const addUser = (data: any, params: RequestParams = {}) =>
   request<RVoid>({
     path: `/users/admin`,
+    method: 'POST',
+    body: data,
+    secure: true,
+    type: ContentType.Json,
+    skipErrorHandler: false,
+    ...params,
+  });
+export const addTherapist = (data: any, params: RequestParams = {}) =>
+  request<RVoid>({
+    path: `/therapist/admin`,
     method: 'POST',
     body: data,
     secure: true,
@@ -3532,6 +3569,69 @@ export const getRecruitList = (
 ) =>
   request<any>({
     path: `/recruit/admin`,
+    method: 'GET',
+    query: query,
+    secure: true,
+    skipErrorHandler: true,
+    ...params,
+  });
+export const getRecruitMeetList = (
+  query: {
+    start?:number;
+    limit?:number;
+    type?: string;
+    name?: string;
+    phone?: string;
+  },
+  params: RequestParams = {},
+) =>
+  request<any>({
+    path: `/recruit/meet/admin`,
+    method: 'GET',
+    query: query,
+    secure: true,
+    skipErrorHandler: true,
+    ...params,
+  });
+
+export const editTherapist = (data: any, params: RequestParams = {}) =>
+  request<RVoid>({
+    path: `/therapist/admin`,
+    method: 'patch',
+    body: data,
+    secure: true,
+    type: ContentType.Json,
+    skipErrorHandler: true,
+    ...params,
+  });
+export const getCompanyGroupList = (
+  query: {
+    start?:number;
+    limit?:number;
+    type?: string;
+    name?: string;
+    phone?: string;
+  },
+  params: RequestParams = {},
+) =>
+  request<any>({
+    path: `/company-group/admin`,
+    method: 'GET',
+    query: query,
+    secure: true,
+    skipErrorHandler: true,
+    ...params,
+  });
+
+export const getCompanyGroupChildList = (
+  query: {
+    id:number;
+
+  },
+  params: RequestParams = {},
+) =>
+  request<any>({
+    path: `/company-group/child/admin`,
     method: 'GET',
     query: query,
     secure: true,

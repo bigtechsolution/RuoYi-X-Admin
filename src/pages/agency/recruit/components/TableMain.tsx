@@ -6,11 +6,11 @@ import type {SearchParams} from './ButtonExport';
 import ButtonExport from './ButtonExport';
 import ButtonRemove from './ButtonRemove';
 import {useActionRefMainTable} from '../model';
-import {getTherapistList, getTherapyList,} from '@/services/system/System';
+import {getCompanyGroupList, getTherapistList, getTherapyList,} from '@/services/system/System';
 import {convertParams} from '@/utils';
 import type {ProColumns, ProFormInstance, ProTableProps} from '@ant-design/pro-components';
 import {useRef, useState} from 'react';
-import CureButtonEdit from "@/pages/therapist/basic/components/CureButtonEdit.tsx";
+import CureButtonEdit from "./CureButtonEdit.tsx";
 
 function formatPhoneNumber(phoneNumber: string): string {
   // 전화번호의 숫자만 추출합니다.
@@ -48,78 +48,61 @@ const useColumns = (): ProColumns<any>[] => {
 
   return [
     {dataIndex: 'id', key: 'id', title: '키', valueType: 'text', hideInSearch: true},
+    // {
+    //   dataIndex: 'name', key: 'name', title: '치료사', valueType: 'text',search:false, render: (_, record) =>
+    //     record.therapist ? (
+    //       <>
+    //         {record.therapist.name}
+    //       </>
+    //     ) : (
+    //       <>-</>
+    //     ),
+    // },
+    // {
+    //   dataIndex: 'child', key: 'child', title: '아동명', valueType: 'text', search:false,render: (_, record) =>
+    //     record.child ? (
+    //       <>
+    //         {record.child.name}
+    //       </>
+    //     ) : (
+    //       <>-</>
+    //     ),
+    // },
+    {dataIndex: 'title', key: 'title', title: '제목', valueType: 'text'},
     {
-      dataIndex: 'name', key: 'name', title: '치료사', valueType: 'text', render: (_, record) =>
-        record.therapist ? (
-          <>
-            {record.therapist.name}
-          </>
-        ) : (
-          <>-</>
-        ),
-    },
-    {
-      dataIndex: 'child', key: 'child', title: '아동명', valueType: 'text', render: (_, record) =>
-        record.child ? (
-          <>
-            {record.child.name}
-          </>
-        ) : (
-          <>-</>
-        ),
-    },
-    {dataIndex: 'cureType', key: 'cureType', title: '치료과목', valueType: 'text'},
-    {dataIndex: 'hometType', key: 'hometType', title: '홈티타입', valueType: 'text'},
-    {
-      dataIndex: 'idx',  title: '주치료횟수', valueType: 'text', render: (_, record) =>
-        record.recruit? (
-          <>
-            {record.recruit.weekCureCount}
-          </>
-        ) : (
-          <>-</>
-        ),
-    },
-    {
-      dataIndex: 'cost',
-      key: 'cost',
-      title: '치료비',
-      valueType: 'text',
-      render: (cost) => {
+      dataIndex: 'baseAddress', key: 'baseAddress', title: '주소', valueType: 'text', search: false, render: (_,record) => {
         // Format the cost as a string with commas
-        return cost ? cost.toLocaleString() : '-';
+        console.log(record)
+        return record.baseAddress? record.baseAddress.address+" "+record.detailAddress :"";
       }
     },
     {
-      dataIndex: 'idx',  title: '1차날짜', valueType: 'text', render: (_, record) =>
-        record.schedules.length>0 ? (
-          <>
-            {formatDateTime(record.schedules[0].start)}
-          </>
-        ) : (
-          <>-</>
-        ),
+      dataIndex: 'type',
+      key: 'type',
+      title: '타입',
+      valueType: 'text',
+      render: (text) => {
+        // Format the cost as a string with commas
+        return text;
+      }
     },
     {
-      dataIndex: 'idx',  title: '1차총금액', valueType: 'text', render: (_, record) =>
-        record.schedules.length>0 ? (
-          <>
-            {record.firstTotalSum.toLocaleString()}
-          </>
+      dataIndex: 'tags',
+      key: 'tags',
+      title: '타입',
+      valueType: 'text',
+      render: (_, record) =>
+        record.tags ? (
+          <ul>
+            {record.tags?.map((region: any, index: any) => (
+              <li key={index}>{region?.name}</li>
+            ))}
+          </ul>
         ) : (
           <>-</>
         ),
     },
-    {
-      dataIndex: 'idx',  title: '2차총금액', valueType: 'text', render: (_, record) =>
-        record.schedules.length>0 ? (
-          <>
-            {record.secondTotalSum.toLocaleString()}
-          </>
-        ) : (
-          <>-</>
-        ),
-    },
+
     {
       dataIndex: 'status',
       key: 'status',
@@ -150,7 +133,7 @@ const tableAlertOptionRender: ProTableProps<any, 'text'>['tableAlertOptionRender
   return <ButtonRemove disabled={selectedRowKeys.length === 0} isBatch id={selectedRowKeys as number[]}/>;
 };
 
-const TableMain = () => {
+const TableMain =  () => {
   const [searchParams, setSearchParams] = useState<SearchParams>({});
 
   const formRef = useRef<ProFormInstance<any>>();
@@ -158,7 +141,6 @@ const TableMain = () => {
   const actionRef = useActionRefMainTable();
 
   const columns = useColumns();
-
   return (
     <BaseProTable<any, any>
       formRef={formRef}
@@ -168,7 +150,7 @@ const TableMain = () => {
         const params: any = convertParams(...p);
         console.log(params)
         console.log(p)
-        const output: any = await getTherapyList({...params});
+        const output: any = await getCompanyGroupList({...params});
 
         return {total: output.data.total, data: output.data.results};
       }}

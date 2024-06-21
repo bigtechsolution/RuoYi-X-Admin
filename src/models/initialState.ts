@@ -32,14 +32,15 @@ export const useQueryInitialState = () => {
       return {
         userInfo,
         routeSettingMap: {},
-        menus: convertUserRoutesToMenus([{
-          "name": "/settings",
-          "path": "/settings",
-          "hidden": false,
-          "component": "Layout",
-          "alwaysShow": false,
-          "meta": {"title": "settings", "icon": "ProfileOutlined", "noCache": true, "link": null}
-        },
+        menus: convertUserRoutesToMenus([
+        //   {
+        //   "name": "/settings",
+        //   "path": "/settings",
+        //   "hidden": false,
+        //   "component": "Layout",
+        //   "alwaysShow": false,
+        //   "meta": {"title": "settings", "icon": "ProfileOutlined", "noCache": true, "link": null}
+        // },
         {
           "name": "therapist",
           "path": "therapist",
@@ -54,17 +55,42 @@ export const useQueryInitialState = () => {
               "path": "basic",
               "hidden": false,
               "alwaysShow": false,
-              "meta": {"title": "치료사정보", "": "post", "noCache": true, "link": null}
+              "meta": {"title": "치료사정보", "icon": "post", "noCache": true, "link": null}
             },
             {
               "name": "cost",
               "path": "cost",
               "hidden": false,
               "alwaysShow": false,
-              "meta": {"title": "치료정보", "": "cost", "noCache": true, "link": null}
+              "meta": {"title": "치료정보", "icon": "cost", "noCache": true, "link": null}
             }
           ]
         },
+          {
+            "name": "therapist",
+            "path": "agency",
+            "hidden": false,
+            "redirect": "noRedirect",
+            "component": "Layout",
+            "alwaysShow": true,
+            "meta": {"title": "기관", "icon": "ClothesGloves", "noCache": true, "link": null},
+            "children": [
+              {
+                "name": "basic",
+                "path": "basic",
+                "hidden": false,
+                "alwaysShow": false,
+                "meta": {"title": "기관정보", "icon": "post", "noCache": true, "link": null}
+              },
+              {
+                "name": "recruit",
+                "path": "recruit",
+                "hidden": false,
+                "alwaysShow": false,
+                "meta": {"title": "모집그룹", "icon": "post", "noCache": true, "link": null}
+              }
+            ]
+          },
           {
           "name": "user",
           "path": "user",
@@ -81,7 +107,7 @@ export const useQueryInitialState = () => {
               "hidden": false,
               "component": "system/post/index",
               "alwaysShow": false,
-              "meta": {"title": "유저기본", "": "post", "noCache": true, "link": null}
+              "meta": {"title": "유저기본", "icon": "post", "noCache": true, "link": null}
             }
           ]
         },
@@ -101,7 +127,16 @@ export const useQueryInitialState = () => {
                 "hidden": false,
                 "component": "child/basic/index",
                 "alwaysShow": false,
-                "meta": {"title": "모집공고", "": "child", "noCache": true, "link": null}
+                "meta": {"title": "모집공고", "icon": "child", "noCache": true, "link": null}
+              },
+
+              {
+                "name": "meet",
+                "path": "meet",
+                "hidden": false,
+                "component": "child/basic/index",
+                "alwaysShow": false,
+                "meta": {"title": "미팅정보", "icon": "child", "noCache": true, "link": null}
               }
             ]
           }
@@ -166,42 +201,45 @@ export const useQueryInitialState = () => {
               "meta": {"title": "유저관리", "icon": "post", "noCache": true, "link": null}
             }
           ]
-        }, {
-          "name": "Https://github.com/QNAV/RuoYi-X-Plus",
-          "path": "https://github.com/QNAV/RuoYi-X-Plus",
-          "hidden": false,
-          "component": "Layout",
-          "alwaysShow": false,
-          "meta": {
-            "title": "dd",
-            "icon": "HomeOutlined",
-            "noCache": true,
-            "link": "https://github.com/QNAV/RuoYi-X-Plus"
-          }
-        }, {
-          "name": "Demo",
-          "path": "demo",
-          "hidden": false,
-          "redirect": "noRedirect",
-          "component": "Layout",
-          "alwaysShow": true,
-          "meta": {"title": "cc", "icon": "BugOutlined", "noCache": true, "link": null},
-          "children": [{
-            "name": "Tree",
-            "path": "tree",
-            "hidden": false,
-            "component": "demo/tree/index",
-            "alwaysShow": false,
-            "meta": {"title": "www", "icon": "", "noCache": true, "link": null}
-          }, {
-            "name": "Demo",
-            "path": "demo",
-            "hidden": false,
-            "component": "demo/demo/index",
-            "alwaysShow": false,
-            "meta": {"title": "IHOMET", "icon": "#", "noCache": true, "link": null}
-          }]
-        }])
+        },
+        //   {
+        //   "name": "Https://github.com/QNAV/RuoYi-X-Plus",
+        //   "path": "https://github.com/QNAV/RuoYi-X-Plus",
+        //   "hidden": false,
+        //   "component": "Layout",
+        //   "alwaysShow": false,
+        //   "meta": {
+        //     "title": "dd",
+        //     "icon": "HomeOutlined",
+        //     "noCache": true,
+        //     "link": "https://github.com/QNAV/RuoYi-X-Plus"
+        //   }
+        // },
+        //   {
+        //   "name": "Demo",
+        //   "path": "demo",
+        //   "hidden": false,
+        //   "redirect": "noRedirect",
+        //   "component": "Layout",
+        //   "alwaysShow": true,
+        //   "meta": {"title": "cc", "icon": "BugOutlined", "noCache": true, "link": null},
+        //   "children": [{
+        //     "name": "Tree",
+        //     "path": "tree",
+        //     "hidden": false,
+        //     "component": "demo/tree/index",
+        //     "alwaysShow": false,
+        //     "meta": {"title": "www", "icon": "", "noCache": true, "link": null}
+        //   }, {
+        //     "name": "Demo",
+        //     "path": "demo",
+        //     "hidden": false,
+        //     "component": "demo/demo/index",
+        //     "alwaysShow": false,
+        //     "meta": {"title": "IHOMET", "icon": "#", "noCache": true, "link": null}
+        //   }]
+        // }
+        ])
       };
     },
     {

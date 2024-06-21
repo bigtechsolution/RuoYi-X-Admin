@@ -1,6 +1,6 @@
 import { BasePageContainer } from '@/components';
-import ModalAddOrEdit from '@/pages/system/post/components/ModalAddOrEdit';
-import TableMain from '@/pages/system/post/components/TableMain';
+import ModalAddOrEdit from '@/pages/user/basic/components/ModalAddOrEdit';
+import TableMain from '@/pages/user/basic/components/TableMain';
 import type { FC } from 'react';
 
 const PagePost: FC = () => {
